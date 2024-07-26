@@ -3,7 +3,7 @@
 ### start dev
 ```bash
 # main
-$ pip install git+http
+$ pip install git+https://github.com/baechu805/movie
 $ git clone <url>
 $ cd <dir>
 $ # option
