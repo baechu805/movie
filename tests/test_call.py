@@ -1,7 +1,13 @@
-from src.mov.api.call import gen_url, req, get_key, req2dataframe
+from src.mov.api.call import gen_url, req, get_key, req2list, list2df
+import pandas as pd
 
-def test_req2dataframe():
-    l = req2dataframe()
+def test_list2df():
+    df = list2df()
+    assert isinstance(df, pd.DataFrame)
+    assert 'openDt' in df.columns 
+
+def test_req2list():
+    l = req2list()
     assert len(l) > 0
     v = l[0]
     assert 'rnum' in v.keys()
