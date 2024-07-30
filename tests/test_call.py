@@ -13,7 +13,7 @@ def test_apply_type2df():
         assert df[col_name].dtype in ['int64', 'float64']
 
 
-    return df
+    
 
 
 def test_echo():
