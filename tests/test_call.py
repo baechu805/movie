@@ -12,10 +12,6 @@ def test_apply_type2df():
     for col_name in num_cols:
         assert df[col_name].dtype in ['int64', 'float64']
 
-
-    
-
-
 def test_echo():
     r = echo("hello")
     assert r == "hello"
@@ -26,7 +22,7 @@ def test_save2df():
     df = save2df()
     assert isinstance(df, pd.DataFrame)
     assert 'load_dt' in df.columns
-
+    assert len(df) == 10
 
 def test_list2df():
     df = list2df()
@@ -48,6 +44,10 @@ def test_유알엘테스트():
     url = gen_url()
     assert "http" in url
     assert "kobis" in url
+    
+    d = {"multiMovieYn": "N"}
+    url = gen_url(req_val = d)
+    assert "multiMovieYn" in url
 
 def test_req():
     code, data = req()
