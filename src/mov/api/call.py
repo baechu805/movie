@@ -15,7 +15,7 @@ def apply_type2df(load_dt="20120101", path="~/tmp/test_parquet"):
 
 def save2df(load_dt='20120101', url_param={}):
     """ airflow 호출지점 """
-    df = list2df(load_dt, url_param)
+    df = list2df(url_parame=url_param, load_dt=load_dt)
     df['load_dt'] = load_dt
     
     print(df.head(5))
