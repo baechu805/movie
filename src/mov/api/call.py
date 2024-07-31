@@ -16,13 +16,14 @@ def apply_type2df(load_dt="20120101", path="~/tmp/test_parquet"):
 
 def save2df(load_dt='20120101', url_param={}):
     """ airflow 호출지점 """
-    df = list2df(load_dt)
+    df = list2df(load_dt, url_param)
     df['load_dt'] = load_dt
     print(df.head(5))
     df.to_parquet('~/tmp/test_parquet',partition_cols=['load_dt'])
-    return df
+    url = gen_url(load_dt, url_param)
+    return df, url
 
-def list2df(load_dt='20120101'):
+def list2df(load_dt='20120101', url_param={}):
     l = req2list(load_dt)
     df = pd.DataFrame(l)
     return df
