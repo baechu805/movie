@@ -5,13 +5,6 @@ import pandas as pd
 def echo(yaho):
     return yaho
 
-def apply_type2df(load_dt="20120101", path="~/tmp/test_parquet"):
-    df = pd.read_parquet(f'{path}/load_dt={load_dt}')
-    
-    num_cols = ['rnum', 'rank', 'rankInten', 'salesAmt', 'audiCnt', 'audiAcc', 'scrnCnt', 'showCnt', 'salesShare', 'salesInten', 'salesChange', 'audiInten', 'audiChange']
-    
-    df[num_cols] = df[num_cols].apply(pd.to_numeric)
-    return df
 
 def save2df(load_dt='20120101', url_param={}):
     """ airflow 호출지점 """
@@ -51,11 +44,16 @@ def gen_url(dt="20120101", url_param={}):
     url = f"{base_url}?key={key}&targetDt={dt}"
     for key, value in url_param.items():
         url = url + f"&{key}={value}"
-
         print("*^=" * 10)
         print(url)
         print("*^=" * 10)
-        return url
+    return url
 
 
-
+def apply_type2df(load_dt="20120101", path="~/tmp/test_parquet"):
+    df = pd.read_parquet(f'{path}/load_dt={load_dt}')
+    
+    num_cols = ['rnum', 'rank', 'rankInten', 'salesAmt', 'audiCnt', 'audiAcc', 'scrnCnt', 'showCnt', 'salesShare', 'salesInten', 'salesChange', 'audiInten', 'audiChange']
+    
+    df[num_cols] = df[num_cols].apply(pd.to_numeric)
+    return df
